@@ -4,7 +4,12 @@ trait Problem extends App {
 
   val day: Int
 
-  lazy val input: List[String] = io.Source.fromResource(s"puzzles/day$day.txt").getLines.toList
+  val useExample = false
+
+  private lazy val path = if (useExample) s"puzzles/day${day}example.txt"
+  else s"puzzles/day$day.txt"
+
+  lazy val input: List[String] = io.Source.fromResource(path).getLines.toList
 
   def time[A](f: => A): A = {
     val start = System.currentTimeMillis()
